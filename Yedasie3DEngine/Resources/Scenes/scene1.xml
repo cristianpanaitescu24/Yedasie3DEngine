@@ -1,0 +1,54 @@
+<scene>
+	<shaders>
+		<shader
+			id='basic-shader'
+			vert-file='basicShader.vsh'
+			frag-file='basicShader.fsh'/>
+	</shaders>
+
+	<cameras>
+		<camera 
+			id='main-camera'
+			type='perspective'>
+			<position
+				x='0.0'
+				y='10.0'
+				z='0.0'/>
+			<perspective
+				fov='70'
+				aspect='1.33'
+				near='0.001'
+				far='1000'/>
+		</camera>
+	</cameras>
+
+	<meshes>
+		<mesh
+			id='table'
+			file='table.obj'/>
+	</meshes>
+
+	<materials>
+		<material
+			id='wood'
+			file='wood.matl'/>
+	</materials>
+
+	<textures>
+		<texture
+			id='wood'
+			file='wood.jpg'/>
+	</textures>
+
+	<scene-root>
+	
+		<object 
+			id='object1'
+			mesh-id='table'
+			material-id='wood'
+			texture-id='wood'>
+		</object>
+		
+	</scene-root>
+
+</scene>
