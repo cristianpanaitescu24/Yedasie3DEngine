@@ -16,7 +16,7 @@ public:
 
     Mesh*           GetMesh(std::string meshId);
 
-    UINT32          GetMeshesCount() { return mMeshes.size(); }
+    UINT32          GetMeshesCount() { return (UINT32)mMeshes.size(); }
 
 protected:
 private:

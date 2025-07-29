@@ -2,7 +2,7 @@
 #include "Utils.h"
 #include "ObjLoader.h"
 
-#define MESHES_DIR "../Resources/3dModels/"
+#define MESHES_DIR "../../Resources/3dModels/"
 
 enum OGL_BUFFER
 {

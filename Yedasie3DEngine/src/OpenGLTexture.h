@@ -1,7 +1,7 @@
 #pragma once
 #include "Utils.h"
 
-#define TEXTURES_DIR "../Resources/Images/"
+#define TEXTURES_DIR "../../Resources/Images/"
 
 class Texture
 {

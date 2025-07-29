@@ -70,13 +70,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>YedasieEngine</TargetName>
-    <OutDir>$(SolutionDir)..\bin\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>YedasieEngine</TargetName>
+    <OutDir>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)..\bin\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>YedasieEngine</TargetName>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\</OutDir>
     <TargetName>YedasieEngine</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -84,21 +91,20 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\glew\inc;$(SolutionDir)..\..\glm\inc;$(SolutionDir)..\..\SDL\inc;$(SolutionDir)..\..\stb_image\inc;$(SolutionDir)..\..\imgui;$(SolutionDir)..\..\tinyxml2\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\deps\glew\include;$(SolutionDir)..\..\deps\glm\include;$(SolutionDir)..\..\deps\sdl\include;$(SolutionDir)..\..\deps\stb_image\include;$(SolutionDir)..\..\deps\imgui;$(SolutionDir)..\..\deps\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\glew\lib;$(SolutionDir)..\..\SDL\lib;$(SolutionDir)..\..\tinyxml2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;tinyxml2.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\deps\glew\lib\Win32\;$(SolutionDir)..\..\deps\sdl\lib\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL3.lib;SDL3_test.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>Yes</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)..\..\SDL\lib\SDL2.dll $(SolutionDir)..\bin\$(Configuration)\
-copy $(SolutionDir)..\..\glew\lib\glew32.dll $(SolutionDir)..\bin\$(Configuration)\
-copy $(SolutionDir)..\..\tinyxml2\lib\tinyxml2.dll $(SolutionDir)..\bin\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\deps\sdl\lib\Win32\SDL3.dll $(OutputDir)
+copy $(SolutionDir)..\..\deps\glew\bin\Win32\glew32.dll $(OutputDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -106,15 +112,15 @@ copy $(SolutionDir)..\..\tinyxml2\lib\tinyxml2.dll $(SolutionDir)..\bin\$(Config
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\glew\inc;$(SolutionDir)..\..\glm\inc;$(SolutionDir)..\..\SDL\inc;$(SolutionDir)..\..\stb_image\inc;$(SolutionDir)..\..\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\deps\glew\include;$(SolutionDir)..\..\deps\glm\include;$(SolutionDir)..\..\deps\sdl\include;$(SolutionDir)..\..\deps\stb_image\include;$(SolutionDir)..\..\deps\imgui;$(SolutionDir)..\..\deps\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\glew\lib;$(SolutionDir)..\..\SDL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL3.lib;SDL3_test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\deps\glew\lib\x64\;$(SolutionDir)..\..\deps\sdl\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)..\..\SDL\lib\SDL2.dll $(SolutionDir)..\bin\$(Configuration)\
-copy $(SolutionDir)..\..\glew\lib\glew32.dll $(SolutionDir)..\bin\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\deps\sdl\lib\x64\SDL3.dll $(OutputDir)
+copy $(SolutionDir)..\..\deps\glew\bin\x64\glew32.dll $(OutputDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,17 +130,17 @@ copy $(SolutionDir)..\..\glew\lib\glew32.dll $(SolutionDir)..\bin\$(Configuratio
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\glew\inc;$(SolutionDir)..\..\glm\inc;$(SolutionDir)..\..\SDL\inc;$(SolutionDir)..\..\stb_image\inc;$(SolutionDir)..\..\imgui;$(SolutionDir)..\..\objLoader\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\deps\glew\include;$(SolutionDir)..\..\deps\glm\include;$(SolutionDir)..\..\deps\sdl\include;$(SolutionDir)..\..\deps\stb_image\include;$(SolutionDir)..\..\deps\imgui;$(SolutionDir)..\..\deps\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\glew\lib;$(SolutionDir)..\..\SDL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\deps\glew\lib\Win32\;$(SolutionDir)..\..\deps\sdl\lib\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL3.lib;SDL3_test.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)..\..\SDL\lib\SDL2.dll $(SolutionDir)..\bin\$(Configuration)\
-copy $(SolutionDir)..\..\glew\lib\glew32.dll $(SolutionDir)..\bin\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\deps\sdl\lib\Win32\SDL3.dll $(OutputDir)
+copy $(SolutionDir)..\..\deps\glew\bin\Win32\glew32.dll $(OutputDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,27 +150,32 @@ copy $(SolutionDir)..\..\glew\lib\glew32.dll $(SolutionDir)..\bin\$(Configuratio
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\deps\glew\include;$(SolutionDir)..\..\deps\glm\include;$(SolutionDir)..\..\deps\sdl\include;$(SolutionDir)..\..\deps\stb_image\include;$(SolutionDir)..\..\deps\imgui;$(SolutionDir)..\..\deps\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL3.lib;SDL3_test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\deps\glew\lib\x64\;$(SolutionDir)..\..\deps\sdl\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)..\..\SDL\lib\SDL2.dll $(SolutionDir)..\bin\$(Configuration)\
-copy $(SolutionDir)..\..\glew\lib\glew32.dll $(SolutionDir)..\bin\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\deps\sdl\lib\x64\SDL3.dll $(OutputDir)
+copy $(SolutionDir)..\..\deps\glew\bin\x64\glew32.dll $(OutputDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\imgui\imgui.cpp" />
-    <ClCompile Include="..\..\imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\..\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\..\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\deps\imgui\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\..\deps\imgui\backends\imgui_impl_sdl3.cpp" />
+    <ClCompile Include="..\..\deps\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\deps\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\..\deps\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\..\deps\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\..\deps\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\deps\tinyxml\tinyxml2.cpp" />
     <ClCompile Include="..\src\App.cpp" />
     <ClCompile Include="..\src\Camera.cpp" />
     <ClCompile Include="..\src\CamerasManager.cpp" />
-    <ClCompile Include="..\src\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="..\src\imgui\imgui_impl_sdl.cpp" />
-    <ClCompile Include="..\src\imgui\imgui_utils.cpp" />
+    <ClCompile Include="..\src\ImGuiRenderer.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Material.cpp" />
     <ClCompile Include="..\src\MaterialsManager.cpp" />
@@ -181,18 +192,21 @@ copy $(SolutionDir)..\..\glew\lib\glew32.dll $(SolutionDir)..\bin\$(Configuratio
     <ClCompile Include="..\src\TexturesManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\imgui\imconfig.h" />
-    <ClInclude Include="..\..\imgui\imgui.h" />
-    <ClInclude Include="..\..\imgui\imgui_internal.h" />
-    <ClInclude Include="..\..\imgui\imstb_rectpack.h" />
-    <ClInclude Include="..\..\imgui\imstb_textedit.h" />
-    <ClInclude Include="..\..\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\..\deps\imgui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\..\deps\imgui\backends\imgui_impl_sdl3.h" />
+    <ClInclude Include="..\..\deps\imgui\imconfig.h" />
+    <ClInclude Include="..\..\deps\imgui\imgui.h" />
+    <ClInclude Include="..\..\deps\imgui\imgui_internal.h" />
+    <ClInclude Include="..\..\deps\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\..\deps\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\..\deps\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\..\deps\stb_image\include\stb_image.h" />
+    <ClInclude Include="..\..\deps\stb_image\include\stb_image_write.h" />
+    <ClInclude Include="..\..\deps\tinyxml\tinyxml2.h" />
     <ClInclude Include="..\src\App.h" />
     <ClInclude Include="..\src\Camera.h" />
     <ClInclude Include="..\src\CamerasManager.h" />
-    <ClInclude Include="..\src\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="..\src\imgui\imgui_impl_sdl.h" />
-    <ClInclude Include="..\src\imgui\imgui_utils.h" />
+    <ClInclude Include="..\src\ImGuiRenderer.h" />
     <ClInclude Include="..\src\Material.h" />
     <ClInclude Include="..\src\MaterialsManager.h" />
     <ClInclude Include="..\src\MeshesManager.h" />

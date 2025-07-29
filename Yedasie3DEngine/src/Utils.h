@@ -1,13 +1,16 @@
 #pragma once
 
 #include "imgui.h"
-#include "imgui/imgui_impl_sdl.h"
-#include "imgui/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_sdl3.h"
+#include "backends/imgui_impl_opengl3.h"
 
-#include "glew.h"
+#include "gl/glew.h"
+#include "SDL3/SDL_opengl.h"
+
+#define GLM_ENABLE_EXPERIMENTAL
 #include "glm.hpp"
 #include "gtx/transform.hpp"
-#include <SDL.h>
+#include "SDL3/SDL.h"
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -24,7 +27,8 @@ typedef glm::vec3 Vector3f;
 typedef glm::vec2 Vector2f;
 
 typedef          int  INT32;
-typedef unsigned int UINT32;
+typedef uint32_t	  UINT32;
+typedef uint64_t	  UINT64;
 typedef unsigned char UINT8;
 
 typedef UINT32 STATUS;
@@ -72,10 +76,10 @@ static void GLCheckErrors(const char * functionCall, const char *file, int line)
 
 static void GetGLError(const char *errMessage)
 {
-	//int glerr = glGetError();
-	//while (glerr != GL_NO_ERROR)
-	//{
-	//	printf("OpenGL error %d: %s\n", glerr, errMessage);
-	//	glerr = glGetError();
-	//}
+	int glerr = glGetError();
+	while (glerr != GL_NO_ERROR)
+	{
+		printf("OpenGL error %d: %s\n", glerr, errMessage);
+		glerr = glGetError();
+	}
 }

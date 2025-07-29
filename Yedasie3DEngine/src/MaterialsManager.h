@@ -16,7 +16,7 @@ public:
 
     Material*       GetMaterial(std::string materialId);
 
-    UINT32          GetMaterialsCount() { return mMaterials.size(); }
+    UINT32          GetMaterialsCount() { return (UINT32)mMaterials.size(); }
 
 protected:
 private:

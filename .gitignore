@@ -8,3 +8,9 @@
 *.exe
 *.msi
 
+/deps
+/Yedasie3DEngine/Yedasie3DEngine/x64
+/Yedasie3DEngine/Yedasie3DEngine/.vs
+/Yedasie3DEngine/Yedasie3DEngine/Win32
+/doc
+/Yedasie3DEngine/bin

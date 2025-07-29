@@ -19,7 +19,7 @@ public:
 
     void            SetActiveCamera(std::string cameraId);
 
-    UINT32          GetCamerasCount() { return mCameras.size(); }
+    UINT32          GetCamerasCount() { return (UINT32)mCameras.size(); }
 
 protected:
 private:

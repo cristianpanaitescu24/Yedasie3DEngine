@@ -2,7 +2,7 @@
 #include "Utils.h"
 #include "Object.h"
 #include "SceneManager.h"
-#include "imgui/imgui_utils.h"
+#include "ImGuiRenderer.h"
 
 #define DISPLAY_WIDTH 1920
 #define DISPLAY_HEIGHT 1000

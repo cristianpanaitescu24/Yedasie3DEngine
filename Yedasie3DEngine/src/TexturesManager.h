@@ -16,7 +16,7 @@ public:
 
     Texture*        GetTexture(std::string id);
 
-    UINT32          GetTexturesCount() { return mTextures.size(); }
+    UINT32          GetTexturesCount() { return (UINT32)mTextures.size(); }
 
 protected:
 private:

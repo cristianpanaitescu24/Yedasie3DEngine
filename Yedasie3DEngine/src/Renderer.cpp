@@ -13,7 +13,7 @@ Renderer::Renderer()
 
     mSceneRoot = std::make_shared<Object>();
 
-    gSceneManager->LoadScene("../Resources/Scenes/scene1.xml");
+    gSceneManager->LoadScene("../../Resources/Scenes/scene1.xml");
     mVPWidth = mVPHeight = 0;
 
     mOutputTexture = new Texture(GL_RGBA, 500, 500);
@@ -59,8 +59,8 @@ void Renderer::UpdateViewport(ImVec2 vpSize)
 
 void Renderer::Update(float dtime)
 {
-    ImGuiIO& io = ImGui::GetIO();
-    if (!io.KeysDown[32])
+    auto cursorPos = ImGui::GetMousePos();
+    if (ImGui::IsKeyPressed(ImGuiKey_Escape))
         return;
 
     mTime += dtime * 0.001f;
@@ -70,21 +70,21 @@ void Renderer::Update(float dtime)
 
     float rotateSpeed = dtime * 0.0025f;
 
-    gCamerasManager->GetActiveCamera()->RotateX(-(mOldMousePos.y - io.MousePos.y) * rotateSpeed);
-    gCamerasManager->GetActiveCamera()->RotateY((mOldMousePos.x - io.MousePos.x) * rotateSpeed);
+    gCamerasManager->GetActiveCamera()->RotateX(-(mOldMousePos.y - cursorPos.y) * rotateSpeed);
+    gCamerasManager->GetActiveCamera()->RotateY((mOldMousePos.x - cursorPos.x) * rotateSpeed);
 
     mOldMousePos.x = (float)((INT32)winSize.x / 2);
     mOldMousePos.y = (float)((INT32)winSize.y / 2);
 
     float moveDist = dtime * 0.18f;
 
-    if (io.KeysDown['a'])
+    if (ImGui::IsKeyPressed(ImGuiKey_A))
         gCamerasManager->GetActiveCamera()->MoveRight(moveDist);
-    if (io.KeysDown['d'])
+    if (ImGui::IsKeyPressed(ImGuiKey_D))
         gCamerasManager->GetActiveCamera()->MoveRight(-moveDist);
-    if (io.KeysDown['w'])
+    if (ImGui::IsKeyPressed(ImGuiKey_W))
         gCamerasManager->GetActiveCamera()->MoveForward(moveDist);
-    if (io.KeysDown['s'])
+    if (ImGui::IsKeyPressed(ImGuiKey_S))
         gCamerasManager->GetActiveCamera()->MoveForward(-moveDist);
 }
 

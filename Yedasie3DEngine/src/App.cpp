@@ -11,17 +11,17 @@ App::App()
 App::~App()
 {
     ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
+    ImGui_ImplSDL3_Shutdown();
     ImGui::DestroyContext();
 
-    SDL_GL_DeleteContext(mSDLGLContext);
+    SDL_GL_DestroyContext(mSDLGLContext);
     SDL_DestroyWindow(mSDLWindow);
     SDL_Quit();
 }
 
 STATUS App::Init()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMEPAD | SDL_INIT_EVENTS | SDL_INIT_SENSOR | SDL_INIT_CAMERA);
 
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -31,7 +31,7 @@ STATUS App::Init()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	mSDLWindow = SDL_CreateWindow(WINDOW_TITILE, 0, 30, DISPLAY_WIDTH, DISPLAY_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	mSDLWindow = SDL_CreateWindow(WINDOW_TITILE, DISPLAY_WIDTH, DISPLAY_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	mSDLGLContext = SDL_GL_CreateContext(mSDLWindow);
     SDL_GL_SetSwapInterval(1); // Enable vsync
 	mImGuiContext = ImGui::CreateContext();
@@ -47,11 +47,11 @@ STATUS App::Init()
     ImGui::CreateContext();
     mImGuiIO = ImGui::GetIO();
 
-    bool st = ImGui_ImplSDL2_InitForOpenGL(mSDLWindow, mSDLGLContext);
+    bool st = ImGui_ImplSDL3_InitForOpenGL(mSDLWindow, mSDLGLContext);
 	if (st != true)
 	{
 		SDL_DestroyWindow(mSDLWindow);
-        SDL_GL_DeleteContext(mSDLGLContext);
+        SDL_GL_DestroyContext(mSDLGLContext);
 		ImGui::DestroyContext(mImGuiContext);
 
 		return ST_FAIL;
@@ -78,7 +78,7 @@ void App::Run()
 	Init();
 
     SDL_Event e;
-    UINT32 oldTime = SDL_GetTicks();
+    UINT64 oldTime = SDL_GetTicks();
     float timer = 0;
     int frames = 0;
     Renderer sceneRenderer;
@@ -91,20 +91,21 @@ void App::Run()
     {
         while (SDL_PollEvent(&e))
         {
-            if (e.type == SDL_QUIT)
+            if (e.type == SDL_EVENT_QUIT
+                )
                 mRunning = false;
-            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)
+            if (e.type == SDL_EVENT_KEY_DOWN && e.key.key == SDLK_ESCAPE)
                 ImGui::SetWindowFocus();
             io.WantCaptureKeyboard = true;
-			ImGui_ImplSDL2_ProcessEvent(&e);
+			ImGui_ImplSDL3_ProcessEvent(&e);
         }
 
         ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplSDL2_NewFrame(mSDLWindow);
+        ImGui_ImplSDL3_NewFrame();
         ImGui::NewFrame();
 
-        UINT32 timeNow = SDL_GetTicks();
-        int dtime = timeNow - oldTime;
+        UINT64 timeNow = SDL_GetTicks();
+        UINT64 dtime = timeNow - oldTime;
         oldTime = timeNow;
 
         timer += dtime;
@@ -126,13 +127,13 @@ void App::Run()
             if (ImGui::IsWindowFocused())
             {
                 sceneRenderer.Update(float(dtime));
-                if (io.KeysDown[32])
+                if (ImGui::IsKeyDown(ImGuiKey_Space))
                     SDL_WarpMouseInWindow(mSDLWindow, (INT32)ImGui::GetWindowWidth() / 2, (INT32)ImGui::GetWindowHeight() / 2);
-                SDL_ShowCursor(0);
+                SDL_HideCursor();
             }
             else
             {
-                SDL_ShowCursor(1);
+                SDL_ShowCursor();
             }
 
             auto tex = sceneRenderer.GetOutputTexture();

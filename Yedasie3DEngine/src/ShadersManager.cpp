@@ -48,7 +48,6 @@ Shader* ShadersManager::GetActiveShader()
     return GetShader(mActiveShaderId);
 }
 
-
 void ShadersManager::SetActiveShader(std::string shaderId)
 {
     ASSERT(mShaders.find(shaderId) != mShaders.end());

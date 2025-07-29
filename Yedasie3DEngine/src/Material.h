@@ -1,7 +1,7 @@
 #pragma once
 #include "Utils.h"
 
-#define MATERIALS_DIR "../Resources/materials/"
+#define MATERIALS_DIR "../../Resources/materials/"
 
 class Material
 {

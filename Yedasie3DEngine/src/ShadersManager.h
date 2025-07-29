@@ -19,7 +19,7 @@ public:
 
     void            SetActiveShader(std::string shaderId);
 
-    UINT32          GetShadersCount() { return mShaders.size(); }
+    UINT32          GetShadersCount() { return (UINT32)mShaders.size(); }
 
 protected:
 private:

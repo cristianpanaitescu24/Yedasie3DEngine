@@ -11,14 +11,23 @@
     <Filter Include="OpenGL\Shaders">
       <UniqueIdentifier>{c242ff0f-a6ce-4706-91a8-e47a26cf9b17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ImGui">
-      <UniqueIdentifier>{08df6c02-6575-4cce-a5d9-c9c4aa7549f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SceneManagement">
       <UniqueIdentifier>{2ff2adc9-dfbd-42b8-b9eb-c11741919c17}</UniqueIdentifier>
     </Filter>
     <Filter Include="SceneManagement\Managers">
       <UniqueIdentifier>{974a2d44-860b-4298-8f96-d5a39de4589c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps">
+      <UniqueIdentifier>{90c51084-98dc-4bf9-89cb-c4eb9384b116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\ImGui_backends">
+      <UniqueIdentifier>{054287a7-7562-4b7d-b5ce-f26cffed5eab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\TinyXml">
+      <UniqueIdentifier>{936bcc46-3663-4e29-96d3-35fd7890b62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\stb_image">
+      <UniqueIdentifier>{2bb1f091-b17a-4a81-b27f-d57c5c0379b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,24 +43,6 @@
     </ClCompile>
     <ClCompile Include="..\src\OpenGLTexture.cpp">
       <Filter>OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\imgui\imgui_impl_opengl3.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\imgui\imgui_impl_sdl.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\imgui\imgui.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\imgui\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\imgui\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\imgui\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
     </ClCompile>
     <ClCompile Include="..\src\OpenGLMesh.cpp">
       <Filter>OpenGL</Filter>
@@ -89,8 +80,32 @@
     <ClCompile Include="..\src\SceneManager.cpp">
       <Filter>SceneManagement\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\imgui\imgui_utils.cpp">
-      <Filter>ImGui</Filter>
+    <ClCompile Include="..\src\ImGuiRenderer.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\imgui\backends\imgui_impl_opengl3.cpp">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\imgui\backends\imgui_impl_sdl3.cpp">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\imgui\imgui.cpp">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\imgui\imgui_demo.cpp">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\imgui\imgui_draw.cpp">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\imgui\imgui_tables.cpp">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\imgui\imgui_widgets.cpp">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\deps\tinyxml\tinyxml2.cpp">
+      <Filter>deps\TinyXml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,30 +123,6 @@
     </ClInclude>
     <ClInclude Include="..\src\OpenGLTexture.h">
       <Filter>OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\imgui\imgui_impl_opengl3.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\imgui\imgui_impl_sdl.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\imgui\imgui.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\imgui\imconfig.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\imgui\imgui_internal.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\imgui\imstb_rectpack.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\imgui\imstb_textedit.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\imgui\imstb_truetype.h">
-      <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\src\OpenGLMesh.h">
       <Filter>OpenGL</Filter>
@@ -172,8 +163,41 @@
     <ClInclude Include="..\src\SceneManager.h">
       <Filter>SceneManagement\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\imgui\imgui_utils.h">
-      <Filter>ImGui</Filter>
+    <ClInclude Include="..\src\ImGuiRenderer.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\backends\imgui_impl_opengl3.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\backends\imgui_impl_sdl3.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\imconfig.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\imgui.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\imgui_internal.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\imstb_rectpack.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\imstb_textedit.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\imgui\imstb_truetype.h">
+      <Filter>deps\ImGui_backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\tinyxml\tinyxml2.h">
+      <Filter>deps\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\stb_image\include\stb_image.h">
+      <Filter>deps\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\deps\stb_image\include\stb_image_write.h">
+      <Filter>deps\stb_image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
